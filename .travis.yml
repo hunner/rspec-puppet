@@ -5,6 +5,10 @@ rvm:
 notifications:
   email:
     - hunter@puppetlabs.com
+branches:
+  only:
+    - master
+    - exported_resources_specs
 env:
   - PUPPET_VERSION=2.6.14
   - PUPPET_VERSION=2.7.12
