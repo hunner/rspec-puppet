@@ -86,6 +86,7 @@ module RSpec::Puppet
         [:templatedir, :template_dir],
         [:config, :config],
         [:confdir, :confdir],
+        [:parser, :parser],
       ].each do |a, b|
         if self.respond_to? b
           Puppet[a] = self.send(b)

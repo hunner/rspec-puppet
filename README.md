@@ -223,6 +223,15 @@ you can specify this as follows
 let(:node) { 'testhost.example.com' }
 ```
 
+#### Specifying the catalog parser
+
+Puppet 3.2.x introduced the `future` parser. By default rspec-puppet uses the
+`current` parser. To use the `future` parser you can specify this as follows
+
+```ruby
+let(:parser) { 'future' }
+```
+
 #### Specifying the facts that should be available to your manifest
 
 By default, the test environment contains no facts for your manifest to use.
