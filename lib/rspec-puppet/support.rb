@@ -7,6 +7,10 @@ module RSpec::Puppet
       lambda { catalogue }
     end
 
+    def environment
+      'rp_env'
+    end
+
     def load_catalogue(type)
       vardir = setup_puppet
 
@@ -98,7 +102,7 @@ module RSpec::Puppet
     def facts_hash(node)
       facts_val = {
         'clientversion' => Puppet::PUPPETVERSION,
-        'environment'   => 'production',
+        'environment'   => environment,
         'hostname'      => node.split('.').first,
         'fqdn'          => node,
         'domain'        => node.split('.', 2).last,
@@ -220,9 +224,9 @@ module RSpec::Puppet
 
     def build_node(name, opts = {})
       if Puppet.version.to_f >= 4.0
-        node_environment = Puppet::Node::Environment.create('test', [])
+        node_environment = Puppet::Node::Environment.create(environment, [])
       else
-        node_environment = Puppet::Node::Environment.new('test')
+        node_environment = Puppet::Node::Environment.new(environment)
       end
       opts.merge!({:environment => node_environment})
       Puppet::Node.new(name, opts)
